@@ -1,0 +1,113 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/* Center the login container */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4f4f4;
+  }
+  
+  /* Login container styles */
+  .login {
+    width: 400px;
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: relative;
+  }
+  
+  /* Heading styles */
+  .login h1 {
+    margin-bottom: 30px;
+    color: #333;
+  }
+  
+  /* Form styles */
+  .login-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .login-form input {
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    outline: none;
+  }
+  
+  .login-btn {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .login-btn:hover {
+    background-color: #45a049;
+  }
+  .forgot-password{
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .forgot-password a{
+    text-decoration: none;
+    color: #0793b6;
+    font-weight: 900;
+  }
+  /* Horizontal rule styles */
+  hr {
+    margin: 20px 0;
+    border: none;
+    border-top: 1px solid #ddd;
+  }
+  
+  /* Social media links styles */
+  .social-media {
+    display: flex;
+    justify-content: space-evenly;
+  }
+  
+  .social-media a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    margin: 0 10px;
+    border-radius: 50%;
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .facebook {
+    background-color: #3b5998;
+  }
+  
+  .google {
+    background-color: #db4a39;
+  }
+
+.cancel_img_icon{
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width:30px;
+    height:30px;
+    cursor: pointer;
+}

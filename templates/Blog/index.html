@@ -1,0 +1,80 @@
+{% include 'Common/base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title%} HomePage{%endblock%}</title>
+    <link rel="stylesheet" href="{% static 'css/Blog/home.css' %}">
+</head>
+<body>
+
+    <main>
+    {% block content %}
+        <h1 class="latest_blogs">Latest Blogs</h1>
+        <div class="blogs-home">
+         <div class="left-categories">
+             <h2>Filter Blogs By Categories</h2>
+             <div class="categories-list">
+                <form action="{% url 'home' %}" method="get">
+                    {% for category in categories %}    
+                    <div class="single-category">
+                        <input 
+                            type="checkbox" 
+                            name="category" 
+                            value="{{category.category_name}}"
+                            id="{{category.id}}"
+                            {% if request.GET.category == category.category_name %} checked {%endif%}
+                            >
+                        <label for="{{category.id}}">{{category.category_name}}</label>
+                        
+                    </div>
+                    {% endfor %}
+                    <button type="submit" class="filter_button">Filter</button>
+                </form>
+             </div>
+         </div>
+     
+         <div class="right-section-blogs-list">
+             <div class="blogs-list">
+
+                {% for blog in blogs %}
+
+                 <a href="{% url 'detailed_page' blog.id %}" class="single-blog">
+                     <img class="image-blog" src="{{ blog.image.url}}" alt="">
+                     <div class="blog-short-details">
+                         <div class="category-time">
+                             <p class="span">
+                                    {% for category in blog.category.all %}
+                                    {{category.category_name}} {% if not forloop.last%}, {%endif%}
+                                    {% endfor %}
+                             </p>
+                             <p class="span">&#8680; {{blog.last_updated}}</p>
+                         </div>
+     
+                         <h2>{{blog.title}}</h2>
+                         <p>{{ blog.content|truncatechars:60|safe }}</p>
+                         <div class="author-details">
+                             <img src="{{blog.author.user_profile.url}}" alt="">
+                             <div class="author-short-details">
+                                 <p class="author-name">{{blog.author.user.username}}</p>
+                                 <p class="company">{{blog.author.user_company}}</p>
+                             </div>
+                         </div>
+                     </div>
+                 </a>
+                 {%endfor%}
+
+             </div>
+         </div>
+        </div>
+    {% endblock%}
+</main>
+
+<footer>
+    {% include 'Common/footer.html' %}
+</footer>
+    
+</body>
+</html>

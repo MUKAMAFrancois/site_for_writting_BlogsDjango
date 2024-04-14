@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete</title>
+    <link rel="stylesheet" href="{% static 'css/Blog/delete_blog.css' %}">
+</head>
+<body>
+    <main>
+        <h1>
+         Are you sure you want to Delete This Blog?
+        </h1>
+
+        <form  method="post" class="actions">
+            {% csrf_token %}
+            <button type="submit"><b>Yes, I am sure</b></button>
+            <a href="{% url 'view_profile' %}">No, Take me Back</a>
+        </form>
+    </main>
+    
+</body>
+</html>

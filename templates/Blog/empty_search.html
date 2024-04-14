@@ -1,0 +1,48 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>No Results</title>
+</head>
+<style>
+    body{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+        background-color: #f1f1f1;
+    }
+    main{
+        width: 80%;
+        margin: 0 auto;
+        text-align: center;
+        margin-top: 5rem;
+    }
+    a{
+        text-decoration: none;
+        color: #085d9f;
+        font-size: 1.5rem;
+        font-weight: 600;
+    }
+    img{
+        width: 120px;
+        height: 120px;
+        margin: 0 auto;
+        border: #085d9f 3px solid;
+        border-radius: 50%;
+    
+    }
+</style>
+<body>
+
+    <main>
+        <img src="https://static.vecteezy.com/system/resources/thumbnails/002/210/397/small/man-with-magnifying-glass-rgb-color-icon-vector.jpg" alt="">
+        <h1>No Search found for "{{query}}"</h1>
+        <a href="{% url 'home'%}">Back</a>
+    </main>
+    
+</body>
+</html>

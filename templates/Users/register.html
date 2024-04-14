@@ -1,0 +1,67 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignUp Form</title>
+</head>
+<link rel="stylesheet" href="{% static 'css/Users/register.css' %}">
+
+<!-- fontawesome link -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<body>
+    <div class="signup">
+        <a href="{% url 'home' %}"><img class="cancel_img_icon" src="https://static.thenounproject.com/png/1083432-200.png" alt=""></a>
+        <h1>SignUp</h1>
+
+        <form action="{% url 'signup' %}" method="post" class="signup-form">
+            {% csrf_token %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p style="color:red">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+            <input 
+                type="text" 
+                name="first_name" 
+                placeholder="First Name"
+                value="{{form.first_name.value | default:''}}"
+            >
+            <input 
+                type="text" 
+                name="last_name" 
+                placeholder="Last Name"
+                value="{{form.last_name.value | default:''}}"
+            >
+            <input 
+                type="email" 
+                name="email" 
+                placeholder="Email"
+                value="{{form.email.value | default:''}}"
+            >
+            <input 
+                type="password" 
+                name="password" 
+                placeholder="Password"
+                value="{{form.password.value | default:''}}"
+            >
+            <input 
+                type="password" 
+                name="confirm_password" 
+                placeholder="Confirm Password"
+                value="{{form.confirm_password.value | default:''}}"
+            >
+            <button type="submit" class="signup-btn">Sign Up</button>
+        </form>
+        <p class="have_an_account">Already have an account? <a href="{% url 'login' %}">Login</a></p>
+
+        <!-- <hr><h3>OR SignUp Using</h3><hr>
+        <div class="social-media">
+            <a href="#" class="google"><i class="fab fa-google"></i></a>
+        </div>   -->
+    </div>
+
+</body>
+</html>

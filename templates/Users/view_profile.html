@@ -1,0 +1,79 @@
+{% include 'Common/base.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} {{user.first_name}} - Profile {%endblock%}</title>
+    <link rel="stylesheet" href="{% static 'css/Users/view_profile.css'%}">
+</head>
+<body>
+    {% block content%}
+    <main>
+        <h1>{{ user.first_name}} {{user.last_name}}'s Profile</h1>
+        <div class="card-profile">
+            <div class="left_card">
+                <img src="{{person.user_profile.url}}" alt="">
+                <p><b>Email: </b> {{user.email}}</p>
+                <p><b>Phone: </b>{{person.phone_number}}</p>
+            </div>
+            <div class="right-card">
+                <p><b>About:</b></p>
+                <p>{{person.user_bio}}</p>
+                <p><b>Company: </b>{{person.user_company}}</p>
+                <p><b>Are you a Blogger?:</b>{%if person.wanna_be_a_blogger %} Yes {%else%} Not {%endif%}</p>
+            </div>
+        </div>
+        <div class="update-profile">
+            {%if not person.wanna_be_a_blogger %}
+                <h2><a href="">Become</a> a Blogger Now to start writting Blogs!</h2>
+            {%else%}
+            <a class="update-profile-link" href="{% url 'update_profile' %}">Update your Profile</a>
+            <a class="add-blog"  href="{% url 'create_blog' %}">Add new blog</a>
+            {%endif%}
+        </div>
+        {% if my_blogs%}
+
+        <div class="your-blogs">
+            <h2>Here are Your Blogs You have written!</h2>
+
+            <div class="table-wrapper">
+            <table class="fl-table">
+                <thead>
+                <tr>
+                    <th>Blog Title</th>
+                    <th>Updated at</th>
+                    <th>Observations</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                {% for blog in my_blogs%}
+
+                <tbody>
+                    <tr>
+                        <td><a href="{% url 'detailed_page' blog.id %}">{{blog.title}}</a></td>
+                        <td>{{blog.last_updated}}</td>
+                        <td>
+                            <ul>
+                                <li>123 Views</li>
+                                <li>{{likes}} Likes</li>
+                            </ul>
+                        </td>
+                        <td>
+                            <a href="{% url 'update_blog' blog.id %}">Edit</a>
+                            <a href="{% url 'delete_blog' blog.id %}">Delete</a>
+                        </td>
+                    </tr>  
+                <tbody>
+                {%endfor%}
+            </table>
+            </div>
+        </div>
+        {%endif%}
+    </main>
+
+{% endblock %}
+</body>
+</html>

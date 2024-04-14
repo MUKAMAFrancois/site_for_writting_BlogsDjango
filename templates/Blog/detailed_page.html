@@ -1,0 +1,136 @@
+{% include 'Common/base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title%} {{blog.title}}{%endblock%}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+   <link rel="stylesheet" href="{% static 'css/Blog/detailed_page.css' %}">
+</head>
+<body>
+
+    <main>
+        {% block content%}
+
+        
+    
+        <h1>{{blog.title}}</h1>
+        <h4>{{blog.last_updated}}</h4>
+        <div class="author">
+            <img src="{{blog.author.user_profile.url}}" alt="">
+            <div class="about-author">
+                <p class="author name">{{blog.author.user.username}}</p>
+                <p class="company-worker">{{blog.author.user_company}}</p>
+            </div>
+        </div>
+        <div class="left-right-section">
+            <div class="left-sec">
+                <img class="image-of-blog" src="{{ blog.image.url}}" alt="">
+                <p class="long-description">
+                    {{ blog.content|safe}}
+                </p>
+        
+                <div class="actions">
+                    <h5>Share this Blog at: </h5>
+                    <div>
+                        <a href="{{facebook_url}}" target="_blank" rel="noopener noreferrer" class="facebook"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="{{twitter_url}}" target="_blank" rel="noopener noreferrer" class="twitter"><i class="fa-brands fa-square-x-twitter"></i></a>
+                        <a href="{{linkedin_url}}" class="linkedin" target="_blank" rel="noopener noreferrer" ><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="{{whatsapp_url}}" class="whatsapp" target="_blank" rel="noopener noreferrer" ><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+
+                    <div class="liking-disliking">
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            {{reaction_form.as_p}}
+                            <input type="number" name="reaction" id="" value="1" hidden>
+                            <button class="like-btn" type="submit">Like</button>
+                            {% if likes %}
+                                <b class="likes_count">{{likes}}</b>
+                            {% else %}
+                                <b>0</b>
+                            {% endif %}
+                        </form>
+
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            {{reaction_form.as_p}}
+                            <input type="number" name="reaction" id="" value="-1" hidden>
+                            <button class="dislike-btn" type="submit">Dislike</button>
+                            {% if dislikes %}
+                            <b>{{dislikes}}</b>
+                        {% else %}
+                            <b>0</b>
+                        {% endif %}
+                        </form>
+                    </div>
+
+                </div>
+        
+        
+                <div class="comment-system">
+                    <h4>Leave a comment</h4>
+                    <form action="" method="post" class="comment-form">
+                        {% csrf_token %}
+                        <input type="text" name="comment" placeholder="leave Comment">
+                        <button type="submit">Comment</button>
+                    </form>
+                </div>
+        
+                <div class="recent-comments">
+                    <h4>Recent Comments</h4>
+
+                    {% if comments %}
+                        {% for comment in comments %}
+                            <div class="single-comment">
+                                <p>{{comment.comment}}</p>
+                                <div class="commentor">
+                                    <img src="{{comment.person.user_profile.url}}" alt="">
+                                    <div class="commentor-details">
+                                        <p class="person-commentor">{{comment.person.user.username}}</p>
+                                        <p class="commented_at">Commented at: {{comment.date_commented}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        {%endfor%}
+
+                    {% else %}
+                        <p>No Comments Yet</p>
+                    {%endif%}
+                </div>
+
+            </div>
+
+           
+            <div class="right-sec">
+                {% if blogs_in_same_category %}
+                    <h3>Read Similar Blogs</h3>
+                {% else %}
+                    <h3>No Similar Blogs</h3>
+                {%endif%}
+                {% for blog in blogs_in_same_category%}
+                <a href="{% url 'detailed_page' blog.id %}" class="similar-blog-list">
+                    <div class="single-blog">
+                        <h1>{{blog.title}}</h1>
+                        <div class="details-blog">
+                            <p>{{blog.last_updated}}</p>
+                            <p>{{blog.author.user.username}}</p>
+                        </div>
+                    </div>
+                </a>
+                {%endfor%}
+            </div>
+         
+
+        </div>
+   
+
+        {%endblock%}
+    </main>
+    <footer>
+    {% include 'Common/footer.html' %}
+</footer>
+</body>
+</html>

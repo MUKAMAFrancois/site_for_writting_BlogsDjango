@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Blog form</title>
+    <link rel="stylesheet" href="{% static 'css/Blog/add_blog.css' %}">
+</head>
+<body>
+
+    <main>
+        <h1>Update Blog</h1>
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="title">Blog Title</label>
+            <!-- <input 
+                type="text" 
+                id="blog-title" 
+                name="title" 
+                placeholder="Enter Blog Title"
+                value="{{blog.title}}"
+                > -->
+                {{form.title}}
+
+            <label for="">Blog Image</label>
+           <!-- <input 
+            type="file" 
+            name="image" id=""
+            value="{{blog.image.url}}"
+            > -->
+            {{form.image}}
+            <div>
+                <label for="">Select Category</label>
+                {{form.category}}
+            </div>
+
+            <label for="blog-content">Blog Content</label>
+            <!-- <textarea 
+                name="content" 
+                id="blog-content" cols="30" rows="10" 
+                placeholder="Enter Blog Content"
+                >{{blog.content}}</textarea> -->
+                {{form.content}}
+            
+            <button type="submit">Update</button>
+        </form>
+        <a href="{% url 'view_profile' %}">Cancel</a>
+    </main>
+    
+</body>
+</html>

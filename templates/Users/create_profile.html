@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="{% static 'css/Users/create_profile.css' %}">
+</head>
+<body>
+    <main>
+        <div class="add-more-to-prfile">
+            <a href="{% url 'home' %}"><img class="cancel_img_icon" src="https://static.thenounproject.com/png/1083432-200.png" alt=""></a>
+            <h2>Customize your profile info. <span><a href="{% url 'home' %}">Cancel</a></span></h2>
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            <form action="{% url 'create_profile' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input 
+                    type="text" 
+                    name="phone_number" 
+                    placeholder="Phone"/>
+                    <div class="options-to-be-blogger">
+                        <label for="wanna_be_a_blogger">Wanna be a Blogger?</label>
+                        <input 
+                            type="checkbox" 
+                            name="wanna_be_a_blogger" 
+                            id="wanna_be_a_blogger" {% if form.wanna_be_a_blogger.value %}checked{% endif %}>
+                    </div>
+                <div>
+                    <label for="">Profile Picture</label>
+                    <input 
+                        type="file" 
+                        value="{{form.user_profile.value|default_if_none:''}}"
+                        name="user_profile" 
+                    />
+                </div>
+                <input 
+                    type="text" 
+                    name="user_company" 
+                    value="{{form.user_company.value|default_if_none:''}}"
+                    id=""
+                    placeholder="Your Broadcasting Company" 
+                >
+                <textarea 
+                    name="user_bio" 
+                    value = "{{form.user_bio.value|default_if_none:''}}"
+                    id="" cols="30" rows="10" 
+                    placeholder="Write Your Bio"
+                ></textarea>
+               
+                <button type="submit" class="update-profile-btn">Create Profile</button>
+            </form>
+        </div>
+    </main>
+    
+</body>
+</html>

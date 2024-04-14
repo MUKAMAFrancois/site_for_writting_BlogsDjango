@@ -1,0 +1,43 @@
+{% load static%}
+
+<head>
+    <title>Login Form</title>
+</head>
+<link rel="stylesheet" href="{% static 'css/Users/login.css' %}">
+
+<!-- fontawesome link -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+
+<body>
+    <div class="login">
+        <a href="{% url 'home' %}"><img class="cancel_img_icon" src="https://static.thenounproject.com/png/1083432-200.png" alt=""></a>
+        <h1>Login Here</h1>
+        <form action="" method="post" class="login-form">
+            {% csrf_token %}
+
+            <input 
+                type="email" 
+                name="email" 
+                placeholder="Email"
+                value="{{form.email.value | default:''}}"
+            >
+            <input  
+                type="password" 
+                name="password" 
+                placeholder="Password"
+                value="{{form.password.value | default:''}}"
+            >
+            <button type="submit" class="login-btn">Let me in.</button>
+        </form>
+        <div class="forgot-password">
+            <p>New Here? <a href="{% url 'signup' %}">Register</a></p>
+            <p><a href="{% url 'password_reset' %}">Forgot Password?</a></p>
+        </div>
+<!--     
+        <hr><h3>OR Login Using</h3><hr>
+        <div class="social-media">
+            <a href="#" class="google"><i class="fab fa-google"></i></a>
+        </div>   -->
+    </div>
+</body>

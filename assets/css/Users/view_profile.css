@@ -1,0 +1,118 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
+  }
+  
+  body {
+    line-height: 1.5;
+    background-color: #ddd;
+  }
+  
+  main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+  }
+  
+  .card-profile{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+
+  .card-profile img{
+    width:100px;
+    height: 100px;
+    border:2px solid #333;
+    border-radius: 50px;
+    object-fit: contain;
+  }
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  a {
+    color: #333;
+    text-decoration: none;
+  }
+  
+  /* Update Profile Section */
+  .update-profile {
+    margin-bottom: 30px;
+  }
+  
+  .update-profile h2 a {
+    color: blue;
+  }
+  
+  .update-profile-link,.add-blog {
+    display: inline-block;
+    margin-top: 10px;
+    margin-right: 40px;
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border-radius: 4px;
+  }
+  
+  /* Your Blogs Section */
+  .your-blogs {
+    margin-bottom: 30px;
+  }
+  
+  /* Table Styles */
+  .table-wrapper {
+    overflow-x: auto;
+  }
+  
+  .fl-table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  .fl-table th,
+  .fl-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border: 1px solid #ddd;
+  }
+  
+  .fl-table th {
+    background-color: #333;
+    color: #fff;
+  }
+  
+  .fl-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  .fl-table tbody tr:hover {
+    background-color: #e6e6e6;
+  }
+  
+  .fl-table td a {
+    color: blue;
+    margin-right: 10px;
+  }
+  
+  .fl-table td ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .fl-table td ul li {
+    margin-bottom: 5px;
+  }

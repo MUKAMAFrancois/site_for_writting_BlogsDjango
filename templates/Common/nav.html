@@ -1,0 +1,96 @@
+<style>
+    
+header{
+    background-color: #333;
+    color: #fff;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-bottom: 0.5rem;
+    text-align: center;
+    position:fixed;
+    top:0;
+    right:0;
+    left:0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+header .logo{
+    flex-basis: 10%;
+}
+nav{
+    flex-basis:40%;
+}
+nav ul{
+    display: flex;
+    justify-content: center;
+    
+
+}
+nav ul li{
+    list-style: none;
+    margin-left: 2rem;
+    font-size: 20px;
+}
+nav ul li a{
+    color: #fff;
+    text-decoration: none;
+
+}
+nav ul li a:hover{
+    color: #d8d4d4;
+}
+.search-container {
+    flex-basis: 50%;
+    display: flex;
+    justify-content: center;
+
+}
+
+
+.search-container input{
+    width:60%;
+    padding: 0.7rem;
+    border: none;
+    border-radius: 5px;
+    margin-top: 1rem;
+}
+
+.search-container button{
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    margin-top: 1rem;
+    cursor: pointer;
+    color:#fff;
+    background-color: #085d9f;
+
+}
+</style>
+
+<header>
+    <div class="logo">
+        <h5>Welcome, {{user.first_name}} {{user.last_name}}</h5>
+    </div>
+    <form action="{% url 'search_blog' %}" method="get" class="search-container">
+        {% csrf_token %}
+        <input type="text" name="q" id="search" placeholder="Search Blog">
+        <button type="submit">Search</button>
+    </form>
+    <nav>
+        <ul>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            {% if user.person%}
+                 <li><a href="{% url 'view_profile' %}">View Profile</a></li>
+            {%else%}
+                 <li><a href="{% url 'create_profile' %}">Create Profile</a></li>
+            {%endif%}
+            <li><a href="about.html">About</a></li>
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+            {% else %}
+                <li><a href="{% url 'signup' %}">Login</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+</header>
