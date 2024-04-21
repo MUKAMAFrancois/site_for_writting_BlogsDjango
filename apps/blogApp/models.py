@@ -76,7 +76,7 @@ class BlogModel(models.Model):
     title=models.CharField(max_length=100, verbose_name="Title")
     author=models.ForeignKey(Person, on_delete=models.CASCADE,related_name='author_blogs')
     category=models.ManyToManyField(BlogCategory, related_name='blog_categories')
-    content=RichTextField(verbose_name="Content")
+    content=models.TextField(verbose_name="Content")
     image=models.ImageField(upload_to='blog_pics',default='default_blog.jpg', verbose_name= "Blog Image" )
     date_posted=models.DateField(auto_now_add=True, verbose_name="Date Posted",null=True, blank=True)
     last_updated=models.DateField(auto_now=True, verbose_name="Last Updated",null=True, blank=True)

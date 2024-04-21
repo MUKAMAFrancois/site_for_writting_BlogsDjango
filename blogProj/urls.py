@@ -13,7 +13,7 @@ urlpatterns = [
 
     path('users/',include('apps.accounts.urls')),
 
-    path('ckeditor/', include('ckeditor_uploader.urls')),
+    # path('ckeditor/', include('ckeditor_uploader.urls')),
 
     path('social/', include('allauth.urls')),
 

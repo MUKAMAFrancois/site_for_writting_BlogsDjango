@@ -35,8 +35,8 @@ INSTALLED_APPS = [
     'apps.blogApp',
 
     # ckeditor
-     'ckeditor',
-    'ckeditor_uploader',
+    #  'ckeditor',
+    # 'ckeditor_uploader',
 
     # allauth
     'allauth',

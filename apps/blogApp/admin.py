@@ -1,5 +1,5 @@
 from django.contrib import admin
-from ckeditor.widgets import CKEditorWidget
+# from ckeditor.widgets import CKEditorWidget
 from django.db import models
 
 from apps.blogApp.models import BlogCategory, CommentModel, ReactionModel,BlogModel
@@ -18,9 +18,9 @@ class BlogAdmin(admin.ModelAdmin):
     list_filter = ('category','author','last_updated')
     search_fields = ('title','category','author')
 
-    formfield_overrides = {
-        models.TextField: {'widget': CKEditorWidget}
-    }
+    # formfield_overrides = {
+    #     models.TextField: {'widget': CKEditorWidget}
+    # }
 
 
     def get_categories(self,obj):
